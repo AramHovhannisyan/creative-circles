@@ -1,5 +1,10 @@
 # Creative Circles Game
 
+## Live Demo
+
+You can access the live version of the app here: [https://aramhovhannisyan.github.io/creative-circles](https://aramhovhannisyan.github.io/creative-circles)
+
+
 **Creative Circles Game** is an interactive web application built with TypeScript. It offers users the ability to unleash their creativity by generating colorful circles with a simple click, and watch them gracefully descend with realistic gravitational effects.
 
 ## Installation
