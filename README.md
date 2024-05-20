@@ -1,23 +1,31 @@
 # Creative Circles Game
 
-Web application, which allows users to create circles by mouse left-click button, and see circles falling with gravity, built with TypeScript
+**Creative Circles Game** is a web application built with TypeScript that allows users to create circles by clicking the mouse button and see the circles falling with gravity.
 
-<!--
-## Setup
+## Installation
 
 ### Prerequisites
 
-- Node.js and npm installed on your machine.
--->
+Make sure you have Node.js and npm installed on your machine.
 
-### Installation
+### Clone the Repository
 
-1. Clone the repository:
+```bash
+git clone https://github.com/AramHovhannisyan/creative-circles.git
+Install Dependencies
+Navigate to the project directory and install the required packages:
 
-git clone `https://github.com/AramHovhannisyan/creative-circles`
+bash
+cd creative-circles
+npm install
+Usage
+Build the Bundle
+To build the bundle for the application, run:
 
-2. Install depencities `npm install`
+bash
+npm run build
+Serve the Application
+You can serve the application using the development server:
 
-3. Build the Bundle `npm run build`
-
-4. Serve `npm start` or simply open `dist/index.html` with a browser.
+bash
+npm start
