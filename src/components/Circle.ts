@@ -2,7 +2,7 @@ import { canvas } from '../utils/canvas';
 import { Vector } from '../utils/types';
 
 // Constant rate of acceleration for realistic falling effect
-const GRAVITY_RATIO = 300;
+const GRAVITY_RATIO = 200;
 
 export default class Circle {
   private position: Vector;
