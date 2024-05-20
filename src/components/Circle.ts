@@ -20,21 +20,56 @@ export default class Circle {
   private damping: number;
 
   constructor(x: number, y: number) {
-    this.position = { x, y };
     this.radius = RADIUS;
-    this.emojiSize = this.radius * 2;
+    this.position = this.adjustPosition({ x, y });
+    this.emojiSize = this.radius * 2 - 2;
     this.velocity = { x: VELOCITY_X, y: VELOCITY_Y };
     this.acceleration = 9.8 * GRAVITY_RATIO;
     this.damping = DUMPING;
     this.emoji = this.getRandomEmoji();
   }
 
+  // Move circle into canvas if click was too close to the border
+  adjustPosition(position: Vector): Vector {
+    const adjustedPosition = { ...position };
+
+    // Check if the circle is out of the left border
+    if (adjustedPosition.x - this.radius < 0) {
+      adjustedPosition.x = this.radius;
+    }
+
+    // Check if the circle is out of the right border
+    if (adjustedPosition.x + this.radius > canvas.width) {
+      adjustedPosition.x = canvas.width - this.radius;
+    }
+
+    // Check if the circle is out of the top border
+    if (adjustedPosition.y - this.radius < 0) {
+      adjustedPosition.y = this.radius;
+    }
+
+    // Check if the circle is out of the bottom border
+    if (adjustedPosition.y + this.radius > canvas.height) {
+      adjustedPosition.y = canvas.height - this.radius;
+    }
+
+    return adjustedPosition;
+  }
+
   // Draw Circle with emoji in it
   public draw(ctx: CanvasRenderingContext2D) {
     ctx.beginPath();
     ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+
+    ctx.fillStyle = '#0095DD';
+    ctx.fill();
+
     ctx.font = `${this.emojiSize}px Arial`;
-    ctx.fillText(this.emoji, this.position.x - this.radius / 2, this.position.y + this.radius / 2);
+    ctx.fillText(
+      this.emoji,
+      this.position.x - this.radius - 8,
+      this.position.y + this.radius / 2 + 5,
+    );
     ctx.closePath();
   }
 
