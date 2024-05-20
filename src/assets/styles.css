@@ -6,5 +6,7 @@ body {
 
 canvas {
   display: block;
-  background-color: #f0f0f0;
+  background-image: url('./img/palms-10.jpg');
+  background-size: cover;
+  background-position: center;
 }

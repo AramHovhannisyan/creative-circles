@@ -21,6 +21,10 @@ export default (env, argv) => ({
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.png$/,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
@@ -38,6 +42,10 @@ export default (env, argv) => ({
     new CopyWebpackPlugin({
       patterns: [
         { from: 'favicon.ico', to: path.resolve(dirname, 'dist') },
+        {
+          from: path.resolve(dirname, 'src/assets/img'),
+          to: path.resolve(dirname, 'dist/assets/img'),
+        },
       ],
     }),
   ],

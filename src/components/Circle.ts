@@ -1,7 +1,7 @@
 import { canvas } from '../utils/canvas';
 import { Vector } from '../utils/types';
 import {
-  GRAVITY_RATIO, EMOJIS, DUMPING, RADIUS, VELOCITY_X, VELOCITY_Y,
+  GRAVITY_RATIO, DAMPING, RADIUS, VELOCITY_X, VELOCITY_Y, COCONUT_IMG,
 } from '../utils/constants';
 
 export default class Circle {
@@ -9,24 +9,34 @@ export default class Circle {
 
   private velocity: Vector;
 
-  private emoji: string;
-
   private radius: number;
-
-  private emojiSize: number;
 
   private acceleration: number;
 
   private damping: number;
 
+  private image: HTMLImageElement;
+
+  private size: number;
+
+  private isLoaded: boolean;
+
   constructor(x: number, y: number) {
     this.radius = RADIUS;
     this.position = this.adjustPosition({ x, y });
-    this.emojiSize = this.radius * 2 - 2;
     this.velocity = { x: VELOCITY_X, y: VELOCITY_Y };
     this.acceleration = 9.8 * GRAVITY_RATIO;
-    this.damping = DUMPING;
-    this.emoji = this.getRandomEmoji();
+    this.damping = DAMPING;
+
+    this.image = new Image();
+    this.image.src = COCONUT_IMG;
+    this.size = this.radius * 2;
+    this.isLoaded = false;
+
+    // Listen to the load event of the image
+    this.image.onload = () => {
+      this.isLoaded = true;
+    };
   }
 
   // Move circle into canvas if click was too close to the border
@@ -61,13 +71,19 @@ export default class Circle {
     ctx.beginPath();
     ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
 
-    // Since the emoji is a font, some pixel corrections added to it's position
-    ctx.font = `${this.emojiSize}px Arial`;
-    ctx.fillText(
-      this.emoji,
-      this.position.x - this.radius - 8,
-      this.position.y + this.radius / 2 + 5,
-    );
+    if (this.isLoaded) {
+      // ctx.fillStyle = '#0000ff';
+      // ctx.fill();
+
+      ctx.drawImage(
+        this.image,
+        this.position.x - this.radius,
+        this.position.y - this.radius,
+        this.size,
+        this.size,
+      );
+    }
+
     ctx.closePath();
   }
 
@@ -96,10 +112,5 @@ export default class Circle {
         this.velocity.y = 0;
       }
     }
-  }
-
-  // Get random emoji to fill the circle
-  private getRandomEmoji(): string {
-    return EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
   }
 }
