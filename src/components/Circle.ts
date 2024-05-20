@@ -61,6 +61,7 @@ export default class Circle {
     ctx.beginPath();
     ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
 
+    // Since the emoji is a font, some pixel corrections added to it's position
     ctx.font = `${this.emojiSize}px Arial`;
     ctx.fillText(
       this.emoji,
