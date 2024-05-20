@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url'; // Import fileURLToPath function
 
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 // Convert import.meta.url to a file path
@@ -27,11 +28,17 @@ export default (env, argv) => ({
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(dirname, 'dist'), // Use dirname
+    path: path.resolve(dirname, 'dist'),
+    clean: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'favicon.ico', to: path.resolve(dirname, 'dist') },
+      ],
     }),
   ],
   devServer: {
