@@ -1,8 +1,8 @@
 import { canvas } from '../utils/canvas';
 import { Vector } from '../utils/types';
-
-// Constant rate of acceleration for realistic falling effect
-const GRAVITY_RATIO = 200;
+import {
+  GRAVITY_RATIO, EMOJIS, DUMPING, RADIUS, VELOCITY_X, VELOCITY_Y,
+} from '../utils/constants';
 
 export default class Circle {
   private position: Vector;
@@ -21,11 +21,11 @@ export default class Circle {
 
   constructor(x: number, y: number) {
     this.position = { x, y };
-    this.radius = 40;
+    this.radius = RADIUS;
     this.emojiSize = this.radius * 2;
-    this.velocity = { x: 0, y: 0 };
+    this.velocity = { x: VELOCITY_X, y: VELOCITY_Y };
     this.acceleration = 9.8 * GRAVITY_RATIO;
-    this.damping = 0.7;
+    this.damping = DUMPING;
     this.emoji = this.getRandomEmoji();
   }
 
@@ -67,7 +67,6 @@ export default class Circle {
 
   // Get random emoji to fill the circle
   private getRandomEmoji(): string {
-    const emojis = ['😀', '😎', '😊', '🤔', '😄', '😍', '😃', '😉', '😁', '🥳', '😂', '🤣', '😇', '😜', '😘', '🤩', '😋', '😌', '😏', '😇'];
-    return emojis[Math.floor(Math.random() * emojis.length)];
+    return EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
   }
 }
