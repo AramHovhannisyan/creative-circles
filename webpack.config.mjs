@@ -1,5 +1,5 @@
 import path from 'path';
-import { fileURLToPath } from 'url'; // Import fileURLToPath function
+import { fileURLToPath } from 'url';
 
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

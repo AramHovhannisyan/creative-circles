@@ -1,6 +1,8 @@
 import './assets/styles.css';
-import Game from './components/Game';
+import Stage from './components/Stage';
 
-// Start the game
-const game = new Game();
-game.init();
+/**
+ * Start the Game
+ */
+const gameStage = new Stage();
+gameStage.setup();

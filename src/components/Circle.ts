@@ -1,5 +1,5 @@
 import { canvas } from '../utils/canvas';
-import { Vector } from '../utils/types';
+import { Vector } from '../types/index';
 import {
   GRAVITY_RATIO, DAMPING, RADIUS, VELOCITY_X, VELOCITY_Y, COCONUT_IMG,
 } from '../utils/constants';
@@ -36,6 +36,11 @@ export default class Circle {
     // Listen to the load event of the image
     this.image.onload = () => {
       this.isLoaded = true;
+    };
+
+    // Catch image not loaded error
+    this.image.onerror = () => {
+      console.error('Failed to load image');
     };
   }
 
